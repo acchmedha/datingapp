@@ -37,6 +37,8 @@ namespace DatingAppAPI
             // connection between ApplicationDbContext and PostgreSql DB
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +52,9 @@ namespace DatingAppAPI
             }
 
             app.UseRouting();
+
+            // must be after routing and before endpoints
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
             app.UseAuthorization();
 
