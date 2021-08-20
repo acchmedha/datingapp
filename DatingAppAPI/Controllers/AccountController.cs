@@ -39,9 +39,9 @@ namespace DatingAppAPI.Controllers
                 PasswordSalt = hmac.Key
             };
 
-            // this not saving user to DB just tracing
+           
             _context.Users.Add(user);
-            // this actually saves data in DB
+           
             await _context.SaveChangesAsync();
 
             return new UserDto
