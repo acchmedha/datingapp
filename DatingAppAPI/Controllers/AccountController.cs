@@ -1,5 +1,6 @@
 ﻿using DatingAppAPI.Data;
 using DatingAppAPI.DTOs;
+using DatingAppAPI.Interfaces;
 using DatingAppAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,13 +18,16 @@ namespace DatingAppAPI.Controllers
     {
 
         private readonly ApplicationDbContext _context;
-        public AccountController(ApplicationDbContext context)
+
+        private readonly ITokenService _tokenService;
+        public AccountController(ApplicationDbContext context, ITokenService tokenService)
         {
+            _tokenService = tokenService;
             _context = context;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<User>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
@@ -40,11 +44,15 @@ namespace DatingAppAPI.Controllers
             // this actually saves data in DB
             await _context.SaveChangesAsync();
 
-            return user;
+            return new UserDto
+            {
+                Username = user.Username,
+                Token = _tokenService.CreateToken(user)
+            };
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.Username == loginDto.Username);
 
@@ -61,7 +69,11 @@ namespace DatingAppAPI.Controllers
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Invalid password");
             }
 
-            return user;
+            return new UserDto
+            {
+                Username = user.Username,
+                Token = _tokenService.CreateToken(user)
+            };
         }
 
         private async Task<bool> UserExists(string username)
