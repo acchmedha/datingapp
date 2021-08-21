@@ -22,7 +22,7 @@ namespace DatingAppAPI.Controllers
         [HttpGet("auth")]
         public ActionResult<string> GetSecret()
         {
-            return "secret text";
+            return "secret-text";
         }
 
         [HttpGet("not-found")]
@@ -44,7 +44,7 @@ namespace DatingAppAPI.Controllers
         [HttpGet("bad-request")]
         public ActionResult<string> GetBadRequest()
         {
-            return BadRequest("This was not a good request!");
+            return BadRequest();
         }
 
     }
