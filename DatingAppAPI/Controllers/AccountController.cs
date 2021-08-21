@@ -39,7 +39,7 @@ namespace DatingAppAPI.Controllers
                 PasswordSalt = hmac.Key
             };
 
-           
+          
             _context.Users.Add(user);
            
             await _context.SaveChangesAsync();
