@@ -1,4 +1,5 @@
 ﻿using DatingAppAPI.Data;
+using DatingAppAPI.Helpers;
 using DatingAppAPI.Interfaces;
 using DatingAppAPI.Services;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ namespace DatingAppAPI.Extensions
         {
             // Configuring lifetime of services inside dependecy injection container
             services.AddScoped<ITokenService, TokenService>();
+
+            services.AddScoped<IUserRepository, UserRespository>();
+            services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
