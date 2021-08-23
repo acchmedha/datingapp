@@ -139,3 +139,5 @@ C:\Users\ahmedha\source\repos\DatingAppAPI\DatingAppAPI\bin\Debug\net5.0\Microso
 C:\Users\ahmedha\source\repos\DatingAppAPI\DatingAppAPI\bin\Debug\net5.0\Data\UserSeedData.json
 C:\Users\ahmedha\source\repos\DatingAppAPI\DatingAppAPI\bin\Debug\net5.0\AutoMapper.dll
 C:\Users\ahmedha\source\repos\DatingAppAPI\DatingAppAPI\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\ahmedha\source\repos\DatingAppAPI\DatingAppAPI\bin\Debug\net5.0\CloudinaryDotNet.dll
+C:\Users\ahmedha\source\repos\DatingAppAPI\DatingAppAPI\bin\Debug\net5.0\Microsoft.Extensions.WebEncoders.dll

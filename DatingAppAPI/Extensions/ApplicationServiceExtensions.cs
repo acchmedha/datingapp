@@ -16,8 +16,10 @@ namespace DatingAppAPI.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
         {
+            services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             // Configuring lifetime of services inside dependecy injection container
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IPhotoService, PhotoService>();
 
             services.AddScoped<IUserRepository, UserRespository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
