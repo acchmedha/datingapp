@@ -51,7 +51,8 @@ namespace DatingAppAPI.Controllers
             {
                 Username = user.Username,
                 Token = _tokenService.CreateToken(user),
-                KnownAs = user.KnownAs
+                KnownAs = user.KnownAs,
+                Gender = user.Gender
             };
         }
 
@@ -77,7 +78,8 @@ namespace DatingAppAPI.Controllers
             {
                 Username = user.Username,
                 Token = _tokenService.CreateToken(user),
-                KnownAs = user.KnownAs
+                KnownAs = user.KnownAs,
+                Gender = user.Gender
             };
         }
 
